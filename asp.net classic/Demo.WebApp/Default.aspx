@@ -1,42 +1,34 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Demo.WebApp._Default" %>
+﻿<%@ Page Title="Contact Form" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Demo.WebApp._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+        <section class="row">
+            <h1 id="aspnetTitle">Demo</h1>
+            <p class="lead">CRUD + CSV Demo</p>
         </section>
 
         <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
+            <section class="col-md-4">
+                <asp:GridView ID="ContactGridView" DataKeyNames="id" runat="server" 
+                    OnDeleteCommand="DeleteContactButton_Click" OnEditCommand="EditContactButton_Click" 
+                    OnInsertCommand="InsertContactButton_Click"  AllowPaging="True" OnRowCancelingEdit="ContactGridView_RowCancelingEdit" OnRowDeleting="ContactGridView_RowDeleting" OnRowEditing="ContactGridView_RowEditing" OnRowUpdating="ContactGridView_RowUpdating">
+                    <Columns>
+                        <asp:BoundField DataField="First_Name" HeaderText="First Name" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="Last_Name" HeaderText="Last Name" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="Email" HeaderText="Email" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="Phone" HeaderText="Phone" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="Alternate_Phone" HeaderText="Alternate Phone" />
+                        <asp:CommandField ButtonType="Link" ShowSelectButton="false" ShowDeleteButton="true" ShowEditButton="true" ShowInsertButton="true" CausesValidation="true" />
+                    </Columns>
+                </asp:GridView>
             </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
+        </div>
+
+        <div>
+            <section class="col-md-4">
+                <asp:Button ID="AddContactButton" runat="server" Text="Add Contact" CssClass="btn btn-primary" OnClick="AddContactButton_Click" />
+                <asp:Button ID="ExportContactCsvButton" runat="server" Text="Export to CSV" CssClass="btn btn-secondary" OnClick="ExportContactCsvButton_Click" />
             </section>
         </div>
     </main>

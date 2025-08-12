@@ -13,5 +13,25 @@ namespace Demo.WebApp
         {
 
         }
+
+        protected void ContactGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void ContactGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void ContactGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void ContactGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

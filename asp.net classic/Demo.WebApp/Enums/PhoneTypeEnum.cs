@@ -3,6 +3,6 @@
     public enum PhoneTypeEnum
     {
         main, // Main phone number
-        alernate, // Alternate phone number
+        alternate, // Alternate phone number (corrected spelling)
     }
 }

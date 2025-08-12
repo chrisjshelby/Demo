@@ -127,9 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DemoDbContextTests.cs" />
-    <Compile Include="Data\Entities\ContactPhoneTests.cs" />
     <Compile Include="Data\Entities\ContactTests.cs" />
-    <Compile Include="Enums\PhoneTypeEnumTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +136,6 @@
       <Name>Demo.WebApp</Name>
     </ProjectReference>
   </ItemGroup>
-
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

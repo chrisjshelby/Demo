@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Demo.WebApp.Data
 {
-    public class Demo : DbContext
+    public class DemoContext : DbContext
     {
         // Your context has been configured to use a 'Demo' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -12,8 +12,8 @@ namespace Demo.WebApp.Data
         // 
         // If you wish to target a different database and/or database provider, modify the 'Demo' 
         // connection string in the application configuration file.
-        public Demo()
-            : base("name=Contact")
+        public DemoContext()
+            : base("name=Demo")
         {
         }
 
@@ -23,6 +23,5 @@ namespace Demo.WebApp.Data
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         public virtual DbSet<Entities.Contact> Contacts { get; set; }
-        public virtual DbSet<Entities.Contact_Phone> Contact_Phones { get; set; }
     }
 }

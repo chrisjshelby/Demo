@@ -1,51 +1,68 @@
 ﻿using Demo.WebApp.Data;
+using Demo.WebApp.Data.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Services.Description;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Demo.WebApp
 {
-    public partial class _Default : Page
+    public partial class Add : System.Web.UI.Page
     {
-        private int GetContactId(int idx) => (int)ContactGridView.DataKeys[idx]["id"];
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
-            using (var db = new DemoContext())
-            {
-                if (!IsPostBack)
-                {
-                    ContactGridView.DataSource = db.Contacts.ToList();
-                    ContactGridView.DataBind();
-                }
+            if (IsPostBack) return;
 
-                CSVExport.Contacts = db.Contacts.ToList();
-                CSVExport.DataBind();
+            if (Request.QueryString["id"] != null)
+            {
+                int contactId = int.Parse(Request.QueryString["id"]);
+                LoadContact(contactId);
             }
         }
 
-        protected void ContactGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        private void LoadContact(int contactId)
         {
-            var contact_id = GetContactId(e.RowIndex);
+            using (var db = new DemoContext())
+            {
+                var contact = db.Contacts.Find(contactId);
+                if (contact != null)
+                {
+                    txtFirstName.Text = contact.FirstName;
+                    txtLastName.Text = contact.LastName;
+                    txtEmail.Text = contact.Email;
+                    txtPhone.Text = contact.MainPhone;
+                    txtAlternatePhone.Text = contact.AlternatePhone;
+                }
+            }
+        }
+
+        protected void AddContactButton_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid) return;
+
+            int contactId;
 
             try
             {
                 using (var db = new DemoContext())
                 {
-                    var item = db.Contacts.SingleOrDefault(c => c.ID == contact_id);
-
-                    if (item != null)
+                    Contact contact;
+                    if (Request.QueryString["id"] != null)
                     {
-                        db.Contacts.Remove(item);
-                        db.SaveChanges();
-                        ShowBootstrapAlert("Delete Successful!", "Success!", "/");
+                        contactId = int.Parse(Request.QueryString["id"]);
+                        contact = db.Contacts.Find(contactId);
                     }
+                    else
+                    {
+                        contact = new Contact();
+                        db.Contacts.Add(contact);
+                    }
+                    contact.FirstName = txtFirstName.Text;
+                    contact.LastName = txtLastName.Text;
+                    contact.Email = txtEmail.Text;
+                    contact.MainPhone = txtPhone.Text;
+                    contact.AlternatePhone = txtAlternatePhone.Text;
+                    db.SaveChanges();
+                    ShowBootstrapAlert("Save Successful!", "Success!", "/");
                 }
             }
             catch (Exception error)
@@ -54,15 +71,9 @@ namespace Demo.WebApp
             }
         }
 
-        protected void ContactGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void CancelContactButton_Click(object sender, EventArgs e)
         {
-            var contact_id = GetContactId(e.NewEditIndex);
-            Response.Redirect("~/Add.aspx?id=" + contact_id);
-        }
-
-        protected void AddContactButton_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Add.aspx");
+            Response.Redirect("~/");
         }
 
         private void ShowBootstrapAlert(string message, string title = "Notice", string redirectUrl = null)
@@ -111,6 +122,7 @@ namespace Demo.WebApp
 
             ScriptManager.RegisterStartupScript(this, GetType(), "ShowServerAlertModal", script, true);
         }
+
 
     }
 }

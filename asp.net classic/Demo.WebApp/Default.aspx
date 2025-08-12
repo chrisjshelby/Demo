@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Contact Form" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Demo.WebApp._Default" %>
+<%@ Register TagPrefix="Demo" Namespace="Demo.WebApp.Controls" Assembly="Demo.WebApp" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -10,15 +11,15 @@
 
         <div class="row">
             <section class="col-md-4">
-                <asp:GridView ID="ContactGridView" DataKeyNames="id" runat="server" 
-                    OnDeleteCommand="DeleteContactButton_Click" OnEditCommand="EditContactButton_Click" 
-                    OnInsertCommand="InsertContactButton_Click"  AllowPaging="True" OnRowCancelingEdit="ContactGridView_RowCancelingEdit" OnRowDeleting="ContactGridView_RowDeleting" OnRowEditing="ContactGridView_RowEditing" OnRowUpdating="ContactGridView_RowUpdating" OnSelectedIndexChanged="ContactGridView_SelectedIndexChanged">
+                <asp:GridView ID="ContactGridView" DataKeyNames="id" runat="server" AllowPaging="True" 
+                    AutoGenerateColumns="False" OnRowDeleting="ContactGridView_RowDeleting" 
+                    OnRowEditing="ContactGridView_RowEditing">
                     <Columns>
-                        <asp:BoundField DataField="First_Name" HeaderText="First Name" ValidateRequestMode="Enabled" />
-                        <asp:BoundField DataField="Last_Name" HeaderText="Last Name" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="FirstName" HeaderText="First Name" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="LastName" HeaderText="Last Name" ValidateRequestMode="Enabled" />
                         <asp:BoundField DataField="Email" HeaderText="Email" ValidateRequestMode="Enabled" />
-                        <asp:BoundField DataField="Phone" HeaderText="Phone" ValidateRequestMode="Enabled" />
-                        <asp:BoundField DataField="Alternate_Phone" HeaderText="Alternate Phone" />
+                        <asp:BoundField DataField="MainPhone" HeaderText="Phone" ValidateRequestMode="Enabled" />
+                        <asp:BoundField DataField="AlternatePhone" HeaderText="Phone" ValidateRequestMode="Enabled" />
                         <asp:CommandField ButtonType="Link" ShowSelectButton="false" ShowDeleteButton="true" ShowEditButton="true" CausesValidation="true" />
                     </Columns>
                 </asp:GridView>
@@ -28,7 +29,7 @@
         <div>
             <section class="col-md-4">
                 <asp:Button ID="AddContactButton" runat="server" Text="Add Contact" CssClass="btn btn-primary" OnClick="AddContactButton_Click" />
-                <asp:Button ID="ExportContactCsvButton" runat="server" Text="Export to CSV" CssClass="btn btn-secondary" OnClick="ExportContactCsvButton_Click" />
+                <Demo:CSVExport ID="CSVExport" runat="server" />
             </section>
         </div>
     </main>

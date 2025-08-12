@@ -13,10 +13,9 @@ namespace Demo.WebApp.Tests.Data
         [TestMethod]
         public void CanInstantiateDemoDbContext()
         {
-            using (var context = new Demo.WebApp.Data.Demo())
+            using (var context = new Demo.WebApp.Data.DemoContext())
             {
                 Assert.IsNotNull(context.Contacts);
-                Assert.IsNotNull(context.Contact_Phones);
             }
         }
     }

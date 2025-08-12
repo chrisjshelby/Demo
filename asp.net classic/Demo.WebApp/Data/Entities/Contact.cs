@@ -20,6 +20,10 @@ namespace Demo.WebApp.Data.Entities
         [EmailAddress]
         public string Email { get; set; }
 
-        public virtual ICollection<Contact_Phone> Phones { get; set; }
+        [Required]
+        [Phone]
+        public string MainPhone { get; set; }
+
+        public string AlternatePhone { get; set; }
     }
 }

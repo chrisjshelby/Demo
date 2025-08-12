@@ -13,8 +13,6 @@ namespace Demo.WebApp
     {
         void Application_Start(object sender, EventArgs e)
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", Server.MapPath("~/App_Data"));
-
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

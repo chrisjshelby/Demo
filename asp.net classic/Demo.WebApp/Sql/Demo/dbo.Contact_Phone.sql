@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[Contact_Phone]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
     [contact_id] INT NOT NULL, 
     [phone] NCHAR(10) NOT NULL, 
     [type] NCHAR(10) NULL DEFAULT 'main', 

@@ -12,14 +12,14 @@
             <section class="col-md-4">
                 <asp:GridView ID="ContactGridView" DataKeyNames="id" runat="server" 
                     OnDeleteCommand="DeleteContactButton_Click" OnEditCommand="EditContactButton_Click" 
-                    OnInsertCommand="InsertContactButton_Click"  AllowPaging="True" OnRowCancelingEdit="ContactGridView_RowCancelingEdit" OnRowDeleting="ContactGridView_RowDeleting" OnRowEditing="ContactGridView_RowEditing" OnRowUpdating="ContactGridView_RowUpdating">
+                    OnInsertCommand="InsertContactButton_Click"  AllowPaging="True" OnRowCancelingEdit="ContactGridView_RowCancelingEdit" OnRowDeleting="ContactGridView_RowDeleting" OnRowEditing="ContactGridView_RowEditing" OnRowUpdating="ContactGridView_RowUpdating" OnSelectedIndexChanged="ContactGridView_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="First_Name" HeaderText="First Name" ValidateRequestMode="Enabled" />
                         <asp:BoundField DataField="Last_Name" HeaderText="Last Name" ValidateRequestMode="Enabled" />
                         <asp:BoundField DataField="Email" HeaderText="Email" ValidateRequestMode="Enabled" />
                         <asp:BoundField DataField="Phone" HeaderText="Phone" ValidateRequestMode="Enabled" />
                         <asp:BoundField DataField="Alternate_Phone" HeaderText="Alternate Phone" />
-                        <asp:CommandField ButtonType="Link" ShowSelectButton="false" ShowDeleteButton="true" ShowEditButton="true" ShowInsertButton="true" CausesValidation="true" />
+                        <asp:CommandField ButtonType="Link" ShowSelectButton="false" ShowDeleteButton="true" ShowEditButton="true" CausesValidation="true" />
                     </Columns>
                 </asp:GridView>
             </section>

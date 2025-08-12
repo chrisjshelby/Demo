@@ -33,5 +33,10 @@ namespace Demo.WebApp
         {
             throw new NotImplementedException();
         }
+
+        protected void ContactGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

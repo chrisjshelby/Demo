@@ -1,11 +1,12 @@
 # Coding Demo: WebForms Contacts Page
 
+
 ## Features Implemented
 
 - **WebForms UI**: A GridView displays contacts with columns for First Name, Last Name, Email, Phone, and Alternate Phone.
-- **CRUD Operations**: The GridView supports editing and deleting contacts. Event handlers for editing, updating, deleting, and canceling edits are scaffolded in `Default.aspx.cs`.
-- **Add Contact**: An 'Add Contact' button is present (implementation pending).
-- **CSV Export**: An 'Export to CSV' button is present (implementation pending). The export should merge Phone and Alternate Phone into a single column and repeat rows for alternate numbers as shown in the example.
+- **CRUD Operations**: The GridView supports creating, reading, updating, and deleting contacts. All event handlers are fully implemented in `Default.aspx.cs` and `Add.aspx.cs`.
+- **Add Contact**: The 'Add Contact' button and form are fully implemented, supporting both new contact creation and editing existing contacts.
+- **CSV Export**: The 'Export to CSV' button is fully implemented. The export merges Phone and Alternate Phone into a single column and repeats rows for alternate numbers as shown in the example.
 
 ## Requirements (from spec)
 
@@ -30,12 +31,14 @@
       3 Cooper, David 111-222-3336
       ```
 
+
 ## Implementation Notes
 
 - All fields are required except for Alternate Phone.
-- The GridView supports editing and deleting contacts (event handlers are scaffolded).
-- The CSV export button is present; implementation should follow the format above.
-- Data access and business logic are not yet implemented; event handlers in `Default.aspx.cs` are placeholders.
+- The GridView supports editing and deleting contacts.
+- The Add Contact form supports both adding and editing contacts.
+- The CSV export button exports the data in the required format, merging phone numbers as specified.
+- Data access and business logic are implemented using Entity Framework in `DemoContext` and related files.
 
 ---
 
